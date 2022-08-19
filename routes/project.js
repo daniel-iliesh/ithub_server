@@ -11,7 +11,7 @@ import auth from "../middleware/auth.js";
 
 const router = express.Router();
 
-router.get("/", getProjects);
+router.get("/", auth, getProjects);
 router.post("/", auth, createProject);
 router.patch("/:id", auth, updateProject);
 router.delete("/:id", auth, deleteProject);

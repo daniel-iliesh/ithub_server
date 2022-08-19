@@ -14,11 +14,17 @@ dotenv.config();
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
+
+// Routes
+app.use("/post", postRoutes);
+app.use("/user", userRoutes);
+app.use("/project", projectRoutes);
+
 app.use((req, res, next) => {
   res.header(
     "Access-Control-Allow-Headers, *, Access-Control-Allow-Origin",
     "Origin, X-Requested-with, Content_Type,Accept,Authorization",
-    "https://ithub-mocha.vercel.app"
+    "https://ithub-mocha.vercel.app/"
   );
   if (req.method === "OPTIONS") {
     res.header("Access-Control-Allow-Methods", "PUT,POST,PATCH,DELETE,GET");
@@ -26,11 +32,6 @@ app.use((req, res, next) => {
   }
   next();
 });
-
-// Routes
-app.use("/post", postRoutes);
-app.use("/user", userRoutes);
-app.use("/project", projectRoutes);
 
 mongoose
   .connect(process.env.MONGODB_URI)
