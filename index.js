@@ -17,13 +17,15 @@ app.use(cors());
 
 // Routes
 app.use("/post", postRoutes);
-app.use('/user', userRoutes);
-app.use('/project', projectRoutes);
+app.use("/user", userRoutes);
+app.use("/project", projectRoutes);
 
 mongoose
-  .connect(process.env.CONNECTION_URL)
+  .connect(process.env.MONGODB_URI)
   .then(() =>
-    app.listen(process.env.PORT, () => console.log(`Server running on port: ${process.env.PORT}`))
+    app.listen(process.env.PORT, () =>
+      console.log(`Server running on port: ${process.env.PORT}`)
+    )
   )
   .catch((error) => console.log(error));
 
