@@ -14,7 +14,7 @@ dotenv.config();
 const configCors = {
   origin: "*",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  preflightContinue: true,
+  preflightContinue: false,
   optionsSuccessStatus: 204,
 };
 
