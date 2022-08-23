@@ -11,9 +11,16 @@ import projectRoutes from "./routes/project.js";
 const app = express();
 dotenv.config();
 
+const configCors = {
+  origin: "*",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: true,
+  optionsSuccessStatus: 204,
+};
+
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-app.use(cors({ origin: "*" }));
+app.use(cors(configCors));
 
 // Routes
 app.use("/post", postRoutes);
