@@ -19,6 +19,7 @@ app.use(cors());
 app.use("/post", postRoutes);
 app.use("/user", userRoutes);
 app.use("/project", projectRoutes);
+app.use("/", (req, res) => res.send("SERVER IS WORKING"));
 
 mongoose
   .connect(process.env.MONGODB_URI)
