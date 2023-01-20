@@ -17,10 +17,10 @@ dotenv.config();
 //   preflightContinue: true,
 //   optionsSuccessStatus: 200,
 // };
+app.use(cors());
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-app.use(cors());
 
 // app.use(function (req, res, next) {
 //   res.header("Access-Control-Allow-Origin", "https://ithub-mocha.vercel.app"); // update to match the domain you will make the request from
