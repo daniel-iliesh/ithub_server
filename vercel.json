@@ -7,9 +7,9 @@
       }
     ],
     "routes": [
-      { "src": "/post/(.*)", "dest": "/post/$1" },
-      { "src": "/user/(.*)", "dest": "/user/$1" },
-      { "src": "/project/(.*)", "dest": "/project/$1" },
+      { "src": "/post/(.*)", "dest": "./routes/post.js" },
+      { "src": "/user/(.*)", "dest": "./routes/user.js" },
+      { "src": "/project/(.*)", "dest": "./routes/project.js" },
       { "src": "/(.*)", "dest": "./index.js" }
     ]
   }
