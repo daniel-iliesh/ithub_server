@@ -15,7 +15,7 @@ export const signIn = async (req, res) => {
 
     const isPasswordCorrect = await bcrypt.compare(
       password,
-      existingUser.password
+      existingUser.password,
     );
 
     if (!isPasswordCorrect)
@@ -79,13 +79,13 @@ export const signUp = async (req, res) => {
     const token = jwt.sign(
       { email: result.email, id: result._id },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "10y" }
+      { expiresIn: "10y" },
     );
 
     const refreshToken = jwt.sign(
       { email: result.email, id: result._id },
       process.env.REFRESH_TOKEN_SECRET,
-      { expiresIn: "90d" }
+      { expiresIn: "90d" },
     );
     res.cookie("refreshToken", `${refreshToken}`, {
       maxAge: 86400 * 90,
@@ -118,7 +118,7 @@ export const updateUser = async (req, res) => {
     const updatedUserData = await User.findByIdAndUpdate(
       _id,
       { ...userData },
-      { new: true }
+      { new: true },
     );
     res.json(updatedUserData);
   } catch (error) {
@@ -152,7 +152,7 @@ export const followUser = async (req, res) => {
     var updatedUser = await User.findByIdAndUpdate(
       followingId,
       { ...followingUser, friends: [...friends] },
-      { new: true }
+      { new: true },
     );
   }
 
@@ -171,7 +171,7 @@ export const unfollowUser = async (req, res) => {
   const unfollowingUser = await User.findById(unfollowingId);
   console.log(
     "user is following? ",
-    unfollowingUser?.friends.includes(unfollowingId)
+    unfollowingUser?.friends.includes(unfollowingId),
   );
   if (unfollowingUser?.friends.includes(id)) {
     const unfollowIndex = unfollowingUser.friends.indexOf(id);
@@ -180,7 +180,7 @@ export const unfollowUser = async (req, res) => {
     var updatedUser = await User.findByIdAndUpdate(
       unfollowingId,
       { ...unfollowingUser, friends: [...friends] },
-      { new: true }
+      { new: true },
     );
     console.log(updatedUser);
     res.json(updatedUser);
