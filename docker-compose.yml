@@ -28,7 +28,7 @@ services:
       args:
         NODE_ENV: ${NODE_ENV:-production}
     ports:
-      - ${PORT:-8080}:8080
+      - ${PORT:-8888}:8080
     depends_on:
       - mongo
     environment:
